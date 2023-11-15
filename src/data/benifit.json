@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "text":"BROWSE & SHOP FASTER",
+        "img": "https://shop.kofi.com.kh/_nuxt/img/icShop.6819866.png"
+    },
+    {
+        "id": 2,
+        "text":"SAFE & SECURE PAYMENT",
+        "img": "https://shop.kofi.com.kh/_nuxt/img/icSecure.a7eb614.png"
+    },
+    {
+        "id": 3,
+        "text":"FAST & CONVENIENCE",
+        "img": "https://shop.kofi.com.kh/_nuxt/img/icDelivery.4ef7ede.png"
+    },
+    {
+        "id": 4,
+        "text":"SUPPORT MULTI-PLATFORM",
+        "img":"https://shop.kofi.com.kh/_nuxt/img/icComputor.e8ffe9d.png"
+    }
+]

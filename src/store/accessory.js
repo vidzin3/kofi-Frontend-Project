@@ -1,0 +1,190 @@
+// define store 
+
+import {defineStore} from 'pinia'
+import axios from 'axios'
+
+export const accessory = defineStore('accessory',{
+    state:()=>({
+        accessorys:[],
+        items:[],
+        review:[],
+        imgAccessory:[
+            "https://application-media.kofi.com.kh/assets/main/image/product/56dux4-25159c9c-e214-4fdc-961a-ef3ad40d16d8.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/p1dapq-40d87eee-8b7c-455f-848f-b05f75fef882.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/1pkvsw-30c50fe5-ceed-4db9-9691-ae88743aa20a.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/sye76d-8c75f83e-2777-445f-9fdc-79dd9fe75dd7.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/auxxyg-97dd7c94-5201-4282-86e0-d8f9246d00bd.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/0eogmf-80831f19-c85b-4e4e-80d8-100b95bf1df2.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/8cf9xi-e5c42134-947d-4bf4-8c12-1b2f69ec9b2a.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/lt2yuw-ee9d0874-f9bd-4ddf-98bd-4c03bca761ca.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/0iud8h-1aa84042-e921-434c-8a3e-aa5403b5863d.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/17mqtb-a8bb3161-e384-4b52-aa76-53d70bf6d816.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/f0z9hq-906b9b46-17dc-4e7d-814d-333bfa694739.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/51dog6-547b037b-36ae-4d50-b9f3-d03f588f5755.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/wa6xgz-f6e7622e-b430-418e-b89b-eba7283b76dd.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/brst8w-7e1fd075-4380-4fb9-8a03-f5df4039c32a.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/tgrmft-5772226d-a26c-424f-93b1-7731ca16f769.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/3hftef-8c972d4a-f35f-4d7d-b9b5-565dd9ef531d.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/5lrqbn-d00f1e48-f0a3-4b20-949b-fa536319f024.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/qhiny9-ff36479d-c1a5-49f2-989f-a1dd55a4d472.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/prwde8-b34bccd2-7884-4867-b84d-0d49be0ff65a.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/8jr84x-ba55b426-d25e-4818-81ab-72d19c2adaa5.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/t9azyb-c268d448-7422-4036-8e65-9ffe82f7ce1e.png" 
+        ],
+        coffee:[
+            "https://application-media.kofi.com.kh/assets/main/image/product/2g2pz9-ffa5c4e8-17fc-47b2-bb21-ce9489ab1bd2.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/ykgh3o-744ba8d2-d92c-4af9-82b1-09f6c4ed7c2d.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/jofcj5-20528a43-7523-4948-a1e8-ff7399bec43c.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/ylnyoi-2a5e7269-113a-4750-ad24-54c4fc566f5c.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/9o2ll0-38edc8e2-476d-4c07-a283-3fbdfd066209.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/ebl3t2-85d6b94d-0c85-43f8-8385-63806bf4b5c3.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/ciz89e-b1ad6eb6-fb5b-4a8f-adb9-d8425af25754.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/3iurfc-cb466dbd-f5f0-460c-b95b-fca34b5c909d.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/ipn1lj-3f1f323a-4c58-46d6-8394-f116bc6ed250.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/u4tu84-595f04df-a9ec-475f-b66b-bd34cb26c327.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/zgcobn-bf2b6496-ef07-4ea6-8b14-cedd0c619f11.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/38mrdt-f8403353-649d-406b-abb2-37ee40bd1832.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/6nwhde-7894706d-b78b-4a8c-967e-4e003d0fdb75.png"
+        ],
+        Equicment:[
+            "https://application-media.kofi.com.kh/assets/main/image/product/fc9dh4-e5c0b09a-fddb-4e0d-962a-d56deca6f034.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/oah4xk-9489bb31-8824-4784-85cb-e78bb1e1c726.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/nar4t6-10547df8-eaab-4320-b0b9-9ae9e1dbf6ae.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/jn3rbs-164b8c15-6925-49c2-a27d-e6bd206e8c23.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/jtelis-26ff9100-6cc7-4cbd-9349-87a84ca56cab.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/pwvyvb-864d3621-5416-44c9-a492-b77645fafe6f.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/z9f46e-672fcdb0-cc42-436c-aaf2-d1b43643113d.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/qkskct-2b39e87e-5d2a-469d-b736-555c6878a571.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/xc97t8-f99bc1a1-27c1-4c98-ad10-fbc439e68445.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/lgbdyn-bac70572-a431-42e1-aa31-be526efd659d.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/fggl3n-6a0cb5f1-ca49-4fcb-b32f-e453b1a140a4.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/2p6pv8-36c7b3c1-a450-446a-ae67-859f78e55bf8.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/hqjz1c-02a160bc-13ad-4304-a2e8-248813dd37ea.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/72b2dg-da58a7c3-d108-4367-89f7-e64500f7cc4f.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/h20rxl-94585e9a-ef11-4dec-a43b-12284213051f.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/o0uv0v-59bb2d51-39c2-4527-873e-31cbffe8b38c.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/88y4i0-4fbb0ad2-ea63-4b4b-a28e-5afc8e088ad8.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/nu1hh0-85676116-2150-4148-9420-fff3d50b89d3.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/d2vy3k-ed5432cc-c2ae-423b-98df-b0d25ce341be.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/kzs0t0-f0de3db5-4c4f-4473-9836-40bce3c7de7f.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/cm9r7b-d9e72d1b-6c48-49d3-aa74-5bcc12426649.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/1aozbf-2c7caff7-55d4-46b7-8835-d37049e8bbb8.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/tfjdoc-450cead0-4516-45af-9046-c506ea0b2ab2.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/e5u4xq-1c9708b2-3f11-4774-a6dc-c8fe8c823820.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/phob4b-d9c4e637-db2f-4698-9ef6-3f9a21a0c044.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/w49hyn-b45dbde7-9402-44c9-bd27-dbbd3cc6ae84.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/hpwmwp-d45a75db-eccb-46c8-b0cb-63c1204a1f74.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/fgae3b-47592d5f-2135-4777-877e-0bfec88255f7.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/66148j-f854a277-ab40-4da0-887c-dc8689a2ba1c.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/1jjcdb-827ad6de-8c24-4292-95be-2213971683d3.jpeg"
+        ],
+        HomeUsed:[
+            "https://application-media.kofi.com.kh/assets/main/image/product/g57z1t-b5b462c8-e39c-4cb1-8ee1-bbe7911c848f.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/qt4h0f-104a4825-30ff-41c7-ba0a-9e4edc714f94.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/w09giu-c3e9f9b5-36ef-43be-b70a-634edd807fc4.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/u58xis-315cf31b-fe0f-406d-bbd3-41d3fdffe5ce.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/h11we1-e9b5afaa-97a2-4edd-af7a-837399fc9ab1.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/z9s6p0-fdf7727b-9de6-4f63-b7fa-c8c5b4452891.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/pti6cn-35201f13-a00a-4bf9-a909-bc26ce6a47d2.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/xyxqqb-5463b201-bda5-49ee-9e76-723247cad8b8.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/k9b23j-2cb4753c-39a6-414f-a621-64492174d165.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/azzfvq-8577671c-3f37-4783-a41f-71d164f8652d.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/f5b006-2c7ce09b-34e3-4252-a5c7-93bfaf0dce13.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/mel74n-d6f3ebb5-1d12-4252-aad9-99c42e29b3bc.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/u1qliy-fc6b7f3b-af0a-4a81-81dd-f80d43a89f07.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/bgxffo-b1be9883-50dd-4804-affa-7c77de476bf4.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/9gbvqo-70d4aacd-e1cf-463e-89d1-c4a4523d8dab.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/rnxdlz-57212601-4aed-47e3-8d21-f9436d79595c.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/usee23-64d18007-0c76-44b0-b006-1dfafef2d134.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/3bhfnn-34849838-b1c2-4aab-a9ff-70336dcc8fe6.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/asvyrr-197ccecc-cf8e-40c0-8b46-3e6064d1bf62.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/9mc4dy-eb6ea75a-ea29-4531-8349-f60d889dc9fa.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/n5eb82-d5007bce-71eb-407e-bdd7-0a8e651394a4.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/fedn80-68f1050c-fcfc-489b-8cbe-596a7b67f805.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/fedn80-68f1050c-fcfc-489b-8cbe-596a7b67f805.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/mam52b-3cc9bdca-a700-4fbc-9e30-87d22a7ddb41.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/l2sipj-cdff552c-9c69-4c02-b73b-2f885b936d75.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/fzc83d-021c0b64-e223-45aa-8b4b-6bd5924c744f.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/0k13cr-2c46ef49-9fde-470e-ae3f-1c165cae72a9.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/qledfv-34f60b44-3a86-42e5-90c8-ce3dec485984.png"
+        ],
+        ingredient:[
+            "https://application-media.kofi.com.kh/assets/main/image/product/k7ghr5-01447451-c410-4a67-b0c7-55aaefab2c24.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/cso0fz-4b20bf18-92c5-41af-b4ab-941829379be6.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/wsrsxh-f1841b12-b8b5-4669-926c-544c2e69659d.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/1m8h1q-6a54cc40-5046-4a30-9dc4-103141fde1f8.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/4cmtuf-6daa457e-0de3-44ff-90e8-ce13683d8f7a.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/b7h9nr-4666adef-d54c-4b19-a975-4a3d55b8d862.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/n47vd1-40d5bda3-c809-4757-b5e5-df6ca8b05f3f.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/tabwys-f5fa11ea-fc75-481e-bddf-3d5f6d436828.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/o5ltct-2c772dbe-ec3c-468f-b0c7-0ad0b1dc01c9.png"
+        ],
+        Monin:[
+            "https://application-media.kofi.com.kh/assets/main/image/product/jg4jr7-f3b09183-6cc8-4a9c-9817-52e39d54f856.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/c7zijn-5b0abd64-e8d7-4e0e-ab54-47245cf54694.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/1onti2-a1dd06c7-1c23-4ad7-b6c5-42d2ec8cfc38.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/5vm03m-5516afc0-84ce-4715-baa8-994deb5924c2.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/47hitf-b095fe44-f3f9-47dd-8f36-7bdcf627a53a.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/rpd8pb-0503f3ed-6a2f-404b-8920-65df8ac85b7a.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/rpd8pb-0503f3ed-6a2f-404b-8920-65df8ac85b7a.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/4k1z2k-4aa56af6-3a1c-4adf-9c27-dc3f00265743.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/ctjqto-4da339ab-4f77-49db-8099-e11a0cf90d88.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/seskuq-fcd62987-5102-47c1-b9dd-fe82061ddcb5.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/cy1xpj-32789372-1b06-4d2d-ac13-3b6b5276f1fd.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/5wlgqo-01ce4adb-b6a8-4c73-b941-def2ebc845fa.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/zcdia5-5e42b8fe-0a37-4a7d-9617-5f4964a2dcb4.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/5sz6fq-aec59bca-001f-4f0c-a890-ee0b32b6de4d.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/qaxbwd-02fe43a4-ef59-4c4e-ae73-58a4b6ab2470.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/dro543-3fade3bd-da1c-4bf3-9e51-6983c9a3f36e.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/5p64tn-cc69ad7d-95d6-4ea3-afd7-9f63c3b9bac2.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/iyrbbs-0f92a12d-7070-46e5-a06b-4ddffbbf1691.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/ejqgvn-ad15eb48-dce1-4e5f-a6f4-305f52fa3041.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/ru1hmb-6654c8e9-3d56-463d-b87b-bd7cf4c1baf6.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/an5smu-a37462d4-3dfc-4fdf-affc-49c1a8ed3a40.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/2i6moz-df6d396f-4a65-4c01-983c-eb512b9bc53a.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/v2h5a8-0a930df3-e9fd-479e-ac58-80ae61659d1e.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/36u757-55e78a35-8093-4823-9cd1-fceb5b59bc9c.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/dld63o-732a7e9e-fb8d-4c6a-9f86-5bd8a4c0e8f7.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/27rvgn-8fdeca67-ae65-4620-af3d-920e1281ccd4.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/240sb8-ed467255-9ac8-4739-8054-c65d05e5f29a.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/tyhgt6-25071088-d1ac-4851-ad83-b31084858ceb.png",
+            "https://application-media.kofi.com.kh/assets/main/image/product/tyhgt6-25071088-d1ac-4851-ad83-b31084858ceb.png"
+        ],
+        Package:[
+            "https://application-media.kofi.com.kh/assets/main/image/product/60nswu-f3bd7004-6384-4590-ada6-f52804782278.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/7drsld-b4060fdb-876c-4f42-92e7-816391bd3023.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/d7zw43-736a91dd-c756-45bd-bbb7-0352a8071d01.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/qqn2uj-eeb41ef7-588a-4663-91e7-2b5d87c7b9a0.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/phtlx5-81e6cfe5-7661-4341-b777-e9a973819444.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/5ixk23-5106a4db-3e65-4f30-89cd-aa09c933926e.jpeg",
+            "https://application-media.kofi.com.kh/assets/main/image/product/2xyoar-5946eb4f-185b-40d6-9df7-d8a760057c63.jpeg"
+        ]
+    }),
+    actions:{
+        async getAcc(id){
+            try{
+                const res = await axios.get(`https://application-service.kofi.com.kh/client/product?categoryId=${id}&limit=30`)
+                this.accessorys = res.data
+            }catch (error){
+                console.log(error)
+            }
+        },
+        // preview view
+        async getById(id){
+            try{
+                const res = await axios.get(`https://application-service.kofi.com.kh/client/product/${id}`)
+                this.items = res.data
+            }catch(error){
+                console.log(error)
+            }
+        },
+        async reviewProduct(id){
+            try{
+                const res = await axios.get(`https://application-service.kofi.com.kh/client/product/related?offset=0&limit=20&productId=${id}`)
+                this.review = res.data
+            }catch(error){
+                console.log(error)
+            }
+        }
+    }
+})
