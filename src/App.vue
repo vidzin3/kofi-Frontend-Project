@@ -15,8 +15,26 @@
         </v-list-item>
       </v-list>
       <v-list active-color="red" class="pa-4">
-        <v-list-item class="rounded-xl" to="/">Home</v-list-item>
-        <v-menu>
+        <v-expansion-panels>
+          <v-expansion-panel>
+            <v-list-item class="rounded-xl" to="/">Home</v-list-item>
+          </v-expansion-panel>
+        </v-expansion-panels>
+        <v-expansion-panels class="mt-4" variant="accordion">
+          <v-expansion-panel title="Product">
+            <v-expansion-panel-text>
+              <v-list-item v-for="category in store.products.data" class="pa-0" @click="router.push(`/product/category/${category.id}`)" style="cursor: pointer;"> {{ category.name }}</v-list-item>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
+        <v-expansion-panels class="mt-4">
+          <v-expansion-panel title="Services">
+            <v-expansion-panel-text>
+              <v-list-item v-for="ser in service.service" @click="router.push(`/service/service-package/id=101`)" style="cursor: pointer;">Service Package</v-list-item>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
+        <!-- <v-menu>
           <template v-slot:activator="{props}">
             <v-list-item active-color="red" class="rounded-xl" v-bind="props">Product</v-list-item>
           </template>
@@ -28,8 +46,8 @@
               <v-list-item-title v-for="category in item" @click="router.push(`/product/category/${category.id}`)" class="mb-4" style="cursor: pointer;"> {{ category.name }}</v-list-item-title>
             </v-list-item>
           </v-list>
-        </v-menu>
-        <v-menu>
+        </v-menu> -->
+        <!-- <v-menu>
           <template v-slot:activator="{props}">
             <v-list-item active-color="red" class="rounded-xl" v-bind="props">Services</v-list-item>
           </template>
@@ -38,8 +56,8 @@
               <v-list-item-title v-for="ser in service.service" @click="router.push(`/service/service-package/id=101`)" style="cursor: pointer;">Service Package</v-list-item-title>
             </v-list-item>
           </v-list>
-        </v-menu>
-        <v-menu>
+        </v-menu> -->
+        <!-- <v-menu>
           <template v-slot:activator="{props}">
             <v-list-item active-color="red" class="rounded-xl" v-bind="props">Academy</v-list-item>
           </template>
@@ -49,8 +67,19 @@
               <v-list-item-title @click="router.push(`/accademy/traning-course/id=51/subId=201`)" style="cursor: pointer;">Trainning Course</v-list-item-title>
             </v-list-item>
           </v-list>
-        </v-menu>
-        <v-list-item active-color="red" class="rounded-xl" @click="router.push(`/showroom/id=${6}`)">Showroom</v-list-item>
+        </v-menu> -->
+        <v-expansion-panels class="mt-4">
+          <v-expansion-panel title="Academy">
+            <v-expansion-panel-text>
+              <v-list-item @click="router.push(`/accademy/traning-course/id=51/subId=201`)" style="cursor: pointer;">Trainning Course</v-list-item>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
+        <v-expansion-panels class="mt-4">
+          <v-expansion-panel>
+            <v-list-item active-color="red" class="rounded-xl" @click="router.push(`/showroom/id=${6}`)">Showroom</v-list-item>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar>

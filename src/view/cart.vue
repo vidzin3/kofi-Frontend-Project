@@ -31,7 +31,7 @@
             </template>
         </v-breadcrumbs>
         <v-row v-if="cart.cart.length > 0">
-            <v-col>
+            <v-col cols="12">
                 <v-table>
                     <thead>
                         <tr>
@@ -48,7 +48,7 @@
                             <td>
                                 <v-avatar :image="`https://application-media.kofi.com.kh/${carts.imageUrl}`" rounded="0" size="80"></v-avatar>
                             </td>
-                            <td>{{ cart.counting[i] }}</td>
+                            <td>{{ cart.counting[i] }} / ${{ carts.prices.priceAfterDiscount.toFixed(2) }}</td>
                             <td>
                                 <v-btn @click="cart.deteleCart(carts.id)">
                                     <v-icon>mdi-close</v-icon>
@@ -60,6 +60,16 @@
                         </tr>
                     </tbody>
                 </v-table>
+            </v-col>
+            <v-col>
+                <v-card variant="outlined">
+                    <v-card-text>
+                        <div class="d-flex align-center">
+                            <p class="text-body-1">Total Price: </p>
+                            <h1 class="ml-2 text-body-1 text-orange">$ {{ cart.totalPrice().toFixed(2) }}</h1>
+                        </div>
+                    </v-card-text>
+                </v-card>
             </v-col>
         </v-row>
         <v-row v-else>
