@@ -14,7 +14,7 @@ import VueSplide from '@splidejs/vue-splide';
 
 const vuetify = createVuetify({
   components,
-  directives
+  directives,
 })
 
 const app = createApp(App)

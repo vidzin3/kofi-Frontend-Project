@@ -18,8 +18,10 @@
                     <v-list-item>All Category</v-list-item>
                 </v-list>
             </v-menu>
-            <v-btn class="ml-5" variant="none" @click="router.push(`/cart`)">
-                <v-icon>mdi-cart</v-icon>  
+            <v-btn class="ml-5" variant="none" @click="router.push(`/cart`)" icon>
+                <v-badge :content="cart.totalItem()" color="red">
+                    <v-icon>mdi-cart</v-icon>
+                </v-badge> 
             </v-btn>
         </div>
         <v-breadcrumbs :items="items">
@@ -52,11 +54,13 @@
     import {accessory} from '../store/accessory'
     import { computed, onMounted, ref, watch } from 'vue'
     import {useProducts} from '../store/store'
+    import { useCart } from '../store/cart'
     import axios from 'axios'
 
     export default {
         setup() {
             const route = useRoute();
+            const cart = useCart()
             const product = ref([]);
             const router = useRouter()
             const accessoryPro = accessory()
@@ -124,7 +128,8 @@
                 count,
                 loading,
                 router,
-                storeCate
+                storeCate,
+                cart
             };
         }
     }

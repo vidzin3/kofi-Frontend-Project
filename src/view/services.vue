@@ -18,8 +18,10 @@
                     <v-list-item>All Category</v-list-item>
                 </v-list>
             </v-menu>
-            <v-btn class="ml-5" variant="none" @click="router.push(`/cart`)">
-                <v-icon>mdi-cart</v-icon>  
+            <v-btn class="ml-5" variant="none" @click="router.push(`/cart`)" icon>
+                <v-badge :content="cart.totalItem()" color="red">
+                    <v-icon>mdi-cart</v-icon>
+                </v-badge> 
             </v-btn>
         </div>
         <v-breadcrumbs class="px-0" :items="items">
@@ -87,12 +89,14 @@
     import { onMounted } from 'vue'
     import {services} from '../store/services'
     import {RouterView,useRouter} from 'vue-router'
+    import { useCart } from '../store/cart'
     export default {
         components:{
             RouterView
         },
         setup(){
             const service = services()
+            const cart = useCart()
             const storeService = async () => {
                 await service.getService()
             }   
@@ -102,7 +106,8 @@
             })
             return{
                 service,
-                router
+                router,
+                cart
             }
         },
         data() {

@@ -19,8 +19,10 @@
                     <v-list-item>All Category</v-list-item>
                 </v-list>
             </v-menu>
-            <v-btn class="ml-5" variant="none" @click="router.push(`/cart`)">
-                <v-icon>mdi-cart</v-icon>  
+            <v-btn class="ml-5" variant="none" @click="router.push(`/cart`)" icon>
+                <v-badge :content="cart.totalItem()" color="red">
+                    <v-icon>mdi-cart</v-icon>
+                </v-badge> 
             </v-btn>
         </div>
         <v-breadcrumbs :items="items">
@@ -96,6 +98,7 @@
     import { computed, onMounted,ref,watch } from 'vue'
     import {training} from '../store/tranning'
     import {RouterLink,RouterView,useRouter,useRoute} from 'vue-router'
+    import {useCart} from '../store/cart'
     export default {
         components:{
             RouterLink,
@@ -103,6 +106,7 @@
         },
         setup(){
             const trainingStore = training()
+            const cart = useCart()
             const router = useRouter()
             const route = useRoute()
             const trainingref = ref(null);
@@ -135,7 +139,8 @@
                 route,
                 trainingStore,
                 trainingref,
-                storeSelect
+                storeSelect,
+                cart
             }
         },
         data(){

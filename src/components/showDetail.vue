@@ -19,8 +19,10 @@
                     <v-list-item>All Category</v-list-item>
                 </v-list>
             </v-menu>
-            <v-btn class="ml-5" variant="none">
-                <v-icon>mdi-cart</v-icon>  
+            <v-btn class="ml-5" variant="none" @click="router.push(`/cart`)" icon>
+                <v-badge :content="cart.totalItem()" color="red">
+                    <v-icon>mdi-cart</v-icon>
+                </v-badge> 
             </v-btn>
         </div>
         <v-breadcrumbs :items="items">
@@ -69,13 +71,16 @@
 </template>
 
 <script>
-    import {useRoute} from 'vue-router'
+    import {useRoute,useRouter} from 'vue-router'
     import {showroom} from '../store/showroom'
     import { computed } from 'vue'
+    import { useCart } from '../store/cart'
     export default {
         setup(){
             const route = useRoute()
             const room = showroom()
+            const router = useRouter()
+            const cart = useCart()
 
             const getRoute = computed(()=>{
                 return room.getRoomId(route.params.id)
@@ -84,7 +89,9 @@
             return{
                 route,
                 getRoute,
-                room
+                room,
+                router,
+                cart
             }
         },
         data(){

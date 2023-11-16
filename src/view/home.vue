@@ -19,15 +19,17 @@
                     <v-list-item>All Category</v-list-item>
                 </v-list>
             </v-menu>
-            <v-btn class="ml-5" variant="none" @click="router.push(`/cart`)">
-                <v-icon>mdi-cart</v-icon>  
+            <v-btn class="ml-5" variant="none" @click="router.push(`/cart`)" icon>
+                <v-badge :content="cart.totalItem()" color="red">
+                    <v-icon>mdi-cart</v-icon>
+                </v-badge> 
             </v-btn>
         </div>
-        <v-breadcrumbs :items="items">
+        <!-- <v-breadcrumbs :items="items">
             <template v-slot:title="{ item }">
             {{ item.title }}
             </template>
-        </v-breadcrumbs>
+        </v-breadcrumbs> -->
         <Splide :options="options">
             <SplideSlide class="text-center" v-for="slides in slide">
                 <img :height="400" cover :src="slides.img" alt="">
@@ -79,6 +81,7 @@
     import benifit from '../data/benifit.json'
     import {productHome} from '../store/productHome'
     import { onMounted, ref } from 'vue'
+    import { useCart } from '../store/cart'
     export default {
         components:{
             Splide,
@@ -93,6 +96,7 @@
             const router = useRouter()
             const homeProduct = productHome()
             const loading = ref(true)
+            const cart = useCart()
 
             const storeAll = async () => {
                 loading.value = true
@@ -113,7 +117,8 @@
                 options,
                 router,
                 homeProduct,
-                loading
+                loading,
+                cart
             }
         },
         data(){

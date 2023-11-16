@@ -9,12 +9,16 @@ export const useCart = defineStore('cart',{
     actions:{
         addToCart(product,count){
             this.cart.push(product)
-            this.cart.push(count)
+            this.counting.push(count)
         },
         deteleCart(id){
-            const index = this.cart.findIndex(index => index.id === id)
+            const index = this.cart.findIndex(index => index.id == id)
+            console.log(index)
             this.cart.splice(index,1);
             this.counting.splice(index,1);
+        },
+        totalItem(){
+            return this.cart.reduce((acc)=>acc+1,0)
         }
     }
 })

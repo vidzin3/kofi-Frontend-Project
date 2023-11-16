@@ -19,8 +19,10 @@
                     <v-list-item>All Category</v-list-item>
                 </v-list>
             </v-menu>
-            <v-btn class="ml-5" variant="none">
-                <v-icon>mdi-cart</v-icon>  
+            <v-btn class="ml-5" variant="none" @click="router.push(`/cart`)" icon>
+                <v-badge :content="cart.totalItem()" color="red">
+                    <v-icon>mdi-cart</v-icon>
+                </v-badge> 
             </v-btn>
         </div>
         <v-breadcrumbs :items="items">
@@ -30,8 +32,34 @@
         </v-breadcrumbs>
         <v-row v-if="cart.cart.length > 0">
             <v-col>
-                {{ cart.cart }}
-                {{ cart.counting }}
+                <v-table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>image</th>
+                            <th>Quantity</th>
+                            <th>Remove</th>
+                            <th>Buy</th>
+                        </tr>
+                    </thead>
+                    <tbody v-for="(carts,i) in cart.cart">
+                        <tr>
+                            <td>{{ carts.name }}</td>
+                            <td>
+                                <v-avatar :image="`https://application-media.kofi.com.kh/${carts.imageUrl}`" rounded="0" size="80"></v-avatar>
+                            </td>
+                            <td>{{ cart.counting[i] }}</td>
+                            <td>
+                                <v-btn @click="cart.deteleCart(carts.id)">
+                                    <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                            </td>
+                            <td>
+                                <v-btn color="green">BUY</v-btn>
+                            </td>
+                        </tr>
+                    </tbody>
+                </v-table>
             </v-col>
         </v-row>
         <v-row v-else>
@@ -45,8 +73,12 @@
 <script>
     import {useRouter} from 'vue-router'
     import {useCart} from '../store/cart'
+    import { VDataTable } from 'vuetify/labs/VDataTable'
 
     export default {
+        components:{
+            VDataTable
+        },
         setup () {
 
             const cart = useCart()
@@ -54,7 +86,7 @@
 
             return {
                 router,
-                cart
+                cart,
             }
         },
         data(){
