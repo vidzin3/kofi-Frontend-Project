@@ -217,7 +217,7 @@
           <div class="d-flex">
             <v-list-item class="text-black" href="https://shop.kofi.com.kh/terms.html">Term</v-list-item>
             <v-list-item class="text-black" href="https://shop.kofi.com.kh/policy.html">Privacy</v-list-item>
-            <v-list-item class="text-black">CopyrightBy &copysr; KOFI</v-list-item>
+            <v-list-item class="text-black">CopyrightBy &copy; KOFI</v-list-item>
           </div>
           <div>
             <p>© 2023 KOFI Co., Ltd. All Rights Reserved.</p>

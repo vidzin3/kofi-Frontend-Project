@@ -28,7 +28,13 @@
             {{ item.title }}
             </template>
         </v-breadcrumbs>
-        <v-row>
+        <v-row v-if="cart.cart.length > 0">
+            <v-col>
+                {{ cart.cart }}
+                {{ cart.counting }}
+            </v-col>
+        </v-row>
+        <v-row v-else>
             <v-col>
                 <h1 class="text-center">No Cart </h1>
             </v-col>
@@ -38,14 +44,17 @@
 
 <script>
     import {useRouter} from 'vue-router'
+    import {useCart} from '../store/cart'
 
     export default {
         setup () {
 
+            const cart = useCart()
             const router = useRouter()
 
             return {
-                router
+                router,
+                cart
             }
         },
         data(){

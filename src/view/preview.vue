@@ -113,10 +113,10 @@
                 <div class="d-flex align-center w-100 mt-3">
                     <div class="d-flex flex-column w-100">
                         <p class="text-subtitle-1">Quantity</p>
-                        <v-text-field label="Quantity" variant="solo-inverted"></v-text-field>
+                        <v-text-field label="Quantity" variant="solo-inverted" v-model="count"></v-text-field>
                     </div>
                     <div class="w-100 pa-3">
-                        <v-btn class="w-100 text-button text-white" color="orange">Add to cart</v-btn>
+                        <v-btn class="w-100 text-button text-white" color="orange" @click="cart.addToCart(storePre,count)">Add to cart</v-btn>
                     </div>
                 </div>
                 <v-card variant="tonal">
@@ -149,6 +149,7 @@
     import {useProducts} from '../store/store'
     import {useRoute,useRouter} from 'vue-router'
     import {computed, ref,watch,onMounted} from 'vue'
+    import {useCart} from '../store/cart'
 
     export default {
         setup(){
@@ -159,6 +160,8 @@
             const storePre = ref(null)
             const call = ref(null)
             const storeRoute = ref(null)
+            const cart = useCart()
+            const count = ref("")
 
             const getRoute = computed(async ()=> {
                 try{
@@ -226,7 +229,9 @@
                 call,
                 getRoute,
                 useStore,
-                storeRoute
+                storeRoute,
+                cart,
+                count
             }
         }
     }
