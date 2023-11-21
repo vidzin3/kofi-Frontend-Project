@@ -38,7 +38,7 @@
         </div>
         <v-row v-else v-for="cate in storeCate">
             <v-col v-for="store in accessoryPro.accessorys.data" cols="6" lg="3" md="4">
-                <v-card @click="router.push(`/product/${cate.slug}/${store.id}`)" :elevation="4"> 
+                <v-card @click="router.push(`/product/${cate.slug}/${store.id}`)" :elevation="1"> 
                     <v-img :height="150" :src="`https://application-media.kofi.com.kh/${store.imageUrl}`"></v-img>  
                     <v-card-text>
                         <p class="text-body-2">{{ store.name }}</p>

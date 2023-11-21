@@ -62,7 +62,7 @@
         </div>
         <v-row class="mt-3">
             <v-col v-for="(home,i) in homeProduct.products.data" :key="home.id" cols="6" sm="4" md="3" lg="3">
-                <v-card @click="router.push(`/product/${home.mainCategory.name}/${home.id}`)" :elevation="3">
+                <v-card @click="router.push(`/product/${home.mainCategory.name}/${home.id}`)" :elevation="1">
                     <v-img :src="homeProduct.img[i]" alt="" :height="170"></v-img>
                     <v-card-text> 
                         <p class="text-body-1">{{ home.name }}</p>
